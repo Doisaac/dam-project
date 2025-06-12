@@ -47,24 +47,38 @@ public class RegisterActivity extends AppCompatActivity {
             String confirmarPassword = editTextConfirmar.getText().toString().trim();
 
             // Validaciones
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmarPassword.isEmpty()) {
-                Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+            if (username.isEmpty()) {
+                editTextUsuario.setError("Campo obligatorio");
+                return;
+            } else if (username.length() <= 3) {
+                editTextUsuario.setError("Mínimo de 4 caracteres");
                 return;
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, "Correo no válido", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty()) {
+                editTextEmail.setError("Campo obligatorio");
+                return;
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                editTextEmail.setError("Correo no válido");
                 return;
             }
 
-            if (!password.equals(confirmarPassword)) {
-                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            if (password.isEmpty()) {
+                editTextPassword.setError("Campo obligatorio");
+                return;
+            }
+
+            if (confirmarPassword.isEmpty()) {
+                editTextConfirmar.setError("Campo obligatorio");
+                return;
+            } else if (!password.equals(confirmarPassword)) {
+                editTextConfirmar.setError("Las contraseñas no coinciden");
                 return;
             }
 
             // Verificar si ya existe el email
             if (db.userDao().getUserByEmail(email) != null) {
-                Toast.makeText(this, "Este correo ya está registrado en el sistema", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
                 return;
             }
 
