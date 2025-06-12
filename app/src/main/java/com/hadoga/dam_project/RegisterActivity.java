@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.User;
 
@@ -78,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             // Verificar si ya existe el email
             if (db.userDao().getUserByEmail(email) != null) {
-                Toast.makeText(this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.main), "Este correo ya está registrado", Snackbar.LENGTH_LONG).show();
                 return;
             }
 
