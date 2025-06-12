@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_username" />
 
     <EditText
-        android:id="@+id/edittext_usuario"
+        android:id="@+id/textview_usuario"
         android:layout_width="205dp"
         android:layout_height="29dp"
         android:layout_marginStart="58dp"
@@ -63,7 +63,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textview_password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_usuario" />
 
     <Button
         android:id="@+id/btn_ingresar"
