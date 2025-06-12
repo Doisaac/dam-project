@@ -31,6 +31,9 @@ android {
     }
 }
 
+// Version de ROOM
+val room_version = "2.7.1"
+
 dependencies {
 
     implementation(libs.appcompat)
@@ -40,4 +43,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Dependencias de ROOM
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
 }
