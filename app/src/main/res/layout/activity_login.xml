@@ -42,25 +42,23 @@
         android:text="Correo"
         android:textColor="@color/azul_oscuro"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <EditText
         android:id="@+id/textview_usuario"
         android:layout_width="320dp"
         android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/azul_claro"
         android:hint="Ingrese su correo"
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/textview_username"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489" />
+        app:layout_constraintTop_toBottomOf="@id/textview_username" />
 
     <!-- Password -->
     <TextView
@@ -79,18 +77,16 @@
         android:id="@+id/edittext_password"
         android:layout_width="320dp"
         android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/azul_claro"
         android:hint="Ingrese su password"
         android:inputType="textPassword"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/textview_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489" />
+        app:layout_constraintTop_toBottomOf="@id/textview_password" />
 
     <!-- Botones -->
     <Button
