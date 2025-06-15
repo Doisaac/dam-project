@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Básicos -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Custom Colors -->
-    <color name="blue">#337dff</color>
-    <color name="grey">#e7e8eb</color>
-    <color name="grisclaro">#E0E0E0</color>
-    <color name="red">#E61212</color>
-    <color name="green">#4CF013</color>
-    <color name="celesteclaro">#F5FAFF</color>
-    <color name="grisoscuro">#6D6D6D</color>
+    <!-- Paleta Clínica Dental -->
+    <color name="azul_oscuro">#264653</color>
+    <color name="verde_menta">#2A9D8F</color>
+    <color name="azul_claro">#A8DADC</color>
+    <color name="celeste_suave">#E0FBFC</color>
+    <color name="gris_texto">#6C757D</color>
+    <color name="blue">#2196F3</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="grisoscuro">#495057</color>
+    <color name="celesteclaro">#BEE3F8</color>
 </resources>
