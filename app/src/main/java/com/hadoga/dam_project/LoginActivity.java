@@ -58,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 Toast.makeText(this, "¡Bienvenido " + user.username + "!", Toast.LENGTH_LONG).show();
 
+                // Redirigir a HomeActivity (Navigation Drawer)
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+
+                // cierra LoginActivity para no volver (cambiable)
+                finish();
             } else {
                 Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
