@@ -2,8 +2,12 @@ package com.hadoga.dam_project;
 
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Gravity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -77,9 +81,25 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
+            // Cierra el teclado
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
             // Verificar si ya existe el email
             if (db.userDao().getUserByEmail(email) != null) {
-                Snackbar.make(findViewById(R.id.main), "Este correo ya está registrado", Snackbar.LENGTH_LONG).show();
+                // Snackbar
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Este correo ya está registrado", Snackbar.LENGTH_LONG);
+
+                View snackbarView = snackbar.getView();
+                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                snackbar.show();
                 return;
             }
 

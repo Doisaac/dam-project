@@ -10,6 +10,7 @@
         <item name="android:textViewStyle">@style/textviewPersonalizado</item>
         <item name="editTextStyle">@style/edittextPersonalizado</item>
         <item name="materialButtonStyle">@style/buttonPersonalizado</item>
+        <item name="snackbarStyle">@style/snackbarPersonalizado</item>
     </style>
 
     <!-- Custom Themes -->
@@ -33,6 +34,13 @@
     <style name="ShapeAppearance.buttonPersonalizado" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="snackbarPersonalizado" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/snackbar_fondo</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+        <item name="android:fontStyle">italic</item>
     </style>
 
     <style name="Theme.Damproject" parent="Base.Theme.Damproject" />

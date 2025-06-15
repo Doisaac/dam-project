@@ -14,4 +14,7 @@
     <color name="grey">#9E9E9E</color>
     <color name="grisoscuro">#495057</color>
     <color name="celesteclaro">#BEE3F8</color>
+
+    <!-- Snackbar -->
+    <color name="snackbar_fondo">#D32F2F</color>
 </resources>
