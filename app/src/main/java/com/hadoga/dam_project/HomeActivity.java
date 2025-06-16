@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hadoga.dam_project.databinding.ActivityHomeBinding;
 
-public class HomeActivity extends AppCompatActivity {
+public class ExpedientesActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
