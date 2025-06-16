@@ -1,14 +1,20 @@
 package com.hadoga.dam_project.ui.expediente;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.hadoga.dam_project.R;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +68,34 @@ public class AddExpedienteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_expediente, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Calendario
+        EditText editTextFecha = view.findViewById(R.id.editTextFechaNacimiento);
+
+        editTextFecha.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    requireContext(),
+                    (view1, selectedYear, selectedMonth, selectedDay) -> {
+                        String fecha = selectedYear + "-" +
+                                String.format("%02d", selectedMonth + 1) + "-" +
+                                String.format("%02d", selectedDay);
+                        editTextFecha.setText(fecha);
+                    },
+                    year, month, day
+            );
+
+            datePickerDialog.show();
+        });
     }
 }
