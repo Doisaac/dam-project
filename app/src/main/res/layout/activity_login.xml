@@ -33,60 +33,38 @@
         app:layout_constraintHorizontal_bias="0.3" />
 
     <!-- Correo -->
-    <TextView
-        android:id="@+id/textview_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="340dp"
-        android:text="Correo"
-        android:textColor="@color/azul_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <EditText
         android:id="@+id/textview_usuario"
         android:layout_width="320dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:backgroundTint="@color/azul_claro"
         android:hint="Ingrese su correo"
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_username" />
+        app:layout_constraintTop_toBottomOf="@+id/imageview_logo" />
 
     <!-- Password -->
-    <TextView
-        android:id="@+id/textview_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Password"
-        android:textColor="@color/azul_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/textview_usuario"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edittext_password"
         android:layout_width="320dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/azul_claro"
         android:hint="Ingrese su password"
         android:inputType="textPassword"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_usuario" />
 
     <!-- Botones -->
     <Button
