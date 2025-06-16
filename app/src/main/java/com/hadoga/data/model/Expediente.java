@@ -37,4 +37,11 @@ public class Expediente {
 
     public boolean convulsiones;
     public boolean tiroides;
+
+    //constructor para mientras (hay que cambiarlo)
+    public Expediente(String nombre, String apellido, String fechaNacimiento) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }
