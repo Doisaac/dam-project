@@ -11,4 +11,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="expedientes">Expedientes</string>
+    <string name="agregar_expediente">Agregar expediente</string>
+    <string name="nombre_apellido">Nombre Apellido</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
 </resources>
