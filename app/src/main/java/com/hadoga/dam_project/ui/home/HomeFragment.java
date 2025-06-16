@@ -13,9 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hadoga.dam_project.R;
 import com.hadoga.dam_project.databinding.FragmentHomeBinding;
+import com.hadoga.data.AppDatabase;
+import com.hadoga.data.model.Expediente;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -41,6 +47,16 @@ public class HomeFragment extends Fragment {
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_home);
             navController.navigate(R.id.nav_add_expediente);
         });
+
+        // Recycler
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewExpedientes);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        AppDatabase db = AppDatabase.getInstance(requireContext());
+        List<Expediente> lista = db.expedienteDao().getAll();
+
+        ExpedienteAdapter adapter = new ExpedienteAdapter(requireContext(), lista);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
