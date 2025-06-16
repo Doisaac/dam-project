@@ -3,7 +3,54 @@
     <style name="Base.Theme.Damproject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Custom theme -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="android:textColorPrimary">@color/grey</item>
+        <item name="android:textViewStyle">@style/textviewPersonalizado</item>
+        <item name="editTextStyle">@style/edittextPersonalizado</item>
+        <item name="materialButtonStyle">@style/buttonPersonalizado</item>
+        <item name="snackbarStyle">@style/snackbarPersonalizado</item>
+    </style>
+
+    <!-- Custom Themes -->
+    <style name="textviewPersonalizado" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontStyle">italic</item>
+    </style>
+
+    <style name="edittextPersonalizado" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/grisoscuro</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:background">@color/celesteclaro</item>
+    </style>
+
+    <style name="buttonPersonalizado" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+
+    <style name="ShapeAppearance.buttonPersonalizado" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="snackbarPersonalizado" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/snackbar_fondo</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+        <item name="android:fontStyle">italic</item>
     </style>
 
     <style name="Theme.Damproject" parent="Base.Theme.Damproject" />
+
+    <style name="Theme.Damproject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Damproject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Damproject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

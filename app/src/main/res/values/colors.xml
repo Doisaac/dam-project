@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Básicos -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta Clínica Dental -->
+    <color name="azul_oscuro">#264653</color>
+    <color name="verde_menta">#2A9D8F</color>
+    <color name="azul_claro">#A8DADC</color>
+    <color name="celeste_suave">#E0FBFC</color>
+    <color name="gris_texto">#6C757D</color>
+    <color name="blue">#2196F3</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="grisoscuro">#495057</color>
+    <color name="celesteclaro">#BEE3F8</color>
+
+    <!-- Snackbar -->
+    <color name="snackbar_fondo">#D32F2F</color>
 </resources>
