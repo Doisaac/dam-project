@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.hadoga.dam_project.ui.gallery.GalleryFragment"
+        android:name="com.hadoga.dam_project.ui.gallery.CitasFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_citas" />
 
     <fragment
         android:id="@+id/nav_slideshow"

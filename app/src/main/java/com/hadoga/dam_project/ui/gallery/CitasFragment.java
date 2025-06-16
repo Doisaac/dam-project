@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.hadoga.dam_project.databinding.FragmentGalleryBinding;
+import com.hadoga.dam_project.databinding.FragmentCitasBinding;
 
-public class GalleryFragment extends Fragment {
+public class CitasFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentCitasBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        CitasViewModel citasViewModel =
+                new ViewModelProvider(this).get(CitasViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentCitasBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        citasViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
