@@ -22,4 +22,10 @@
         android:name="com.hadoga.dam_project.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_add_expediente"
+        android:name="com.hadoga.dam_project.ui.expediente.AddExpedienteFragment"
+        android:label="Nuevo Expediente"
+        tools:layout="@layout/fragment_add_expediente" />
 </navigation>
