@@ -33,11 +33,9 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class AddExpedienteFragment extends Fragment {
+    // Recibe un ID de expediente
+    private int expedienteId = -1;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -56,21 +54,12 @@ public class AddExpedienteFragment extends Fragment {
      * @return A new instance of fragment fragment_addExpediente.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddExpedienteFragment newInstance(String param1, String param2) {
-        AddExpedienteFragment fragment = new AddExpedienteFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            expedienteId = getArguments().getInt("expediente_id", -1);
         }
     }
 
@@ -84,6 +73,39 @@ public class AddExpedienteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (expedienteId != -1) {
+            AppDatabase db = AppDatabase.getInstance(requireContext());
+            Expediente expediente = db.expedienteDao().getById(expedienteId);
+
+            if (expediente != null) {
+                ((EditText) view.findViewById(R.id.editTextNombre)).setText(expediente.nombre);
+                ((EditText) view.findViewById(R.id.editTextApellido)).setText(expediente.apellido);
+                ((EditText) view.findViewById(R.id.editTextFechaNacimiento)).setText(expediente.fechaNacimiento);
+                ((EditText) view.findViewById(R.id.editTextTelefono)).setText(expediente.telefono);
+                ((EditText) view.findViewById(R.id.editTextCorreo)).setText(expediente.correo);
+                ((EditText) view.findViewById(R.id.editTextDireccion)).setText(expediente.direccion);
+                ((EditText) view.findViewById(R.id.editTextObservaciones)).setText(expediente.observaciones);
+
+                RadioButton radioMasculino = view.findViewById(R.id.radioMasculino);
+                RadioButton radioFemenino = view.findViewById(R.id.radioFemenino);
+                if ("Masculino".equalsIgnoreCase(expediente.genero)) {
+                    radioMasculino.setChecked(true);
+                } else {
+                    radioFemenino.setChecked(true);
+                }
+
+                ((CheckBox) view.findViewById(R.id.checkboxDiabetes)).setChecked(expediente.diabetes);
+                ((CheckBox) view.findViewById(R.id.checkboxAnemia)).setChecked(expediente.anemia);
+                ((CheckBox) view.findViewById(R.id.checkboxGastritis)).setChecked(expediente.gastritis);
+                ((CheckBox) view.findViewById(R.id.checkboxHTA)).setChecked(expediente.hta);
+                ((CheckBox) view.findViewById(R.id.checkboxHemorragias)).setChecked(expediente.hemorragias);
+                ((CheckBox) view.findViewById(R.id.checkboxAsma)).setChecked(expediente.asma);
+                ((CheckBox) view.findViewById(R.id.checkboxCardiacos)).setChecked(expediente.trastornosCardiacos);
+                ((CheckBox) view.findViewById(R.id.checkboxConvulsiones)).setChecked(expediente.convulsiones);
+                ((CheckBox) view.findViewById(R.id.checkboxTiroides)).setChecked(expediente.tiroides);
+            }
+        }
 
         // Calendario
         EditText editTextFecha = view.findViewById(R.id.editTextFechaNacimiento);
@@ -188,9 +210,16 @@ public class AddExpedienteFragment extends Fragment {
 
             // Guardar en base de datos
             AppDatabase db = AppDatabase.getInstance(requireContext());
-            db.expedienteDao().insert(expediente);
 
-            Toast.makeText(requireContext(), "Expediente guardado correctamente", Toast.LENGTH_SHORT).show();
+            // Verifica si estamos editando o creando
+            if (expedienteId != -1) {
+                expediente.id = expedienteId;
+                db.expedienteDao().update(expediente);
+                Toast.makeText(requireContext(), "Expediente actualizado correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                db.expedienteDao().insert(expediente);
+                Toast.makeText(requireContext(), "Expediente guardado correctamente", Toast.LENGTH_SHORT).show();
+            }
 
             // Regresar al fragmento anterior
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_home);
