@@ -1,6 +1,7 @@
 package com.hadoga.dam_project;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -75,6 +77,13 @@ public class LoginActivity extends AppCompatActivity {
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Cambiar color del ícono de overflow, tema y los tres puntos
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+        Drawable overflowIcon = toolbar.getOverflowIcon();
+        if (overflowIcon != null) {
+            overflowIcon.setTint(ContextCompat.getColor(this, R.color.white));
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
