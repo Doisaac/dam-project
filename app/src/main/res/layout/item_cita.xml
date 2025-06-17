@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textPaciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paciente"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textFechaHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha y hora"
+                android:textColor="#666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textMotivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motivo"
+                android:textColor="#666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado"
+                android:textColor="#888"
+                android:textSize="13sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnEditarCita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="Editar" />
+
+            <Button
+                android:id="@+id/btnEliminarCita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Borrar" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

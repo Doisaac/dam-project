@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.hadoga.dam_project.ui.gallery.GalleryFragment"
+        android:name="com.hadoga.dam_project.ui.ctias.CitasFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_citas" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -28,4 +28,15 @@
         android:name="com.hadoga.dam_project.ui.expediente.AddExpedienteFragment"
         android:label="Nuevo Expediente"
         tools:layout="@layout/fragment_add_expediente" />
+
+    <fragment
+        android:id="@+id/nav_add_cita"
+        android:name="com.hadoga.dam_project.ui.ctias.AddCitaFragment"
+        android:label="Nueva Cita"
+        tools:layout="@layout/fragment_add_cita">
+        <argument
+            android:name="cita_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

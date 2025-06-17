@@ -13,6 +13,11 @@ import java.util.List;
 
 @Dao
 public interface CitaDao {
+    @Query("SELECT * FROM citas")
+    List<Cita> getAll();
+
+    @Query("SELECT * FROM citas WHERE id = :id LIMIT 1")
+    Cita getById(int id);
     @Insert
     void insert(Cita cita);
 
@@ -22,6 +27,7 @@ public interface CitaDao {
     @Delete
     void delete(Cita cita);
 
+    // Posible implementación
     @Query("SELECT * FROM citas WHERE paciente_id = :expedienteId")
     List<Cita> getCitasByExpedienteId(int expedienteId);
 }

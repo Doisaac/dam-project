@@ -1,14 +1,14 @@
-package com.hadoga.dam_project.ui.gallery;
+package com.hadoga.dam_project.ui.ctias;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class CitasViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public CitasViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }
