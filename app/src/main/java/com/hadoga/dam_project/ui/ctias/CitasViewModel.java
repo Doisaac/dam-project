@@ -1,4 +1,4 @@
-package com.hadoga.dam_project.ui.gallery;
+package com.hadoga.dam_project.ui.ctias;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
