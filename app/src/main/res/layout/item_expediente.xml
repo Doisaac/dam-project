@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="6dp">
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/celeste_suave">
 
-        <!-- Info -->
+        <!-- Información del expediente -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,40 +29,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre Apellido"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="@color/azul_oscuro"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:id="@+id/textNacimiento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nacimiento: 2000-01-01"
-                android:textColor="#666"
-                android:textSize="14sp" />
+                android:textColor="@color/gris_texto"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif" />
         </LinearLayout>
 
-        <!-- Botones -->
+        <!-- Botones de acción -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="8dp"
                 android:text="Editar"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/azul_oscuro"
+                android:backgroundTint="@color/celesteclaro"
+                app:cornerRadius="16dp"
+                android:fontFamily="sans-serif-medium" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Borrar"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/snackbar_fondo"
+                android:backgroundTint="@color/celesteclaro"
+                app:cornerRadius="16dp"
+                android:fontFamily="sans-serif-medium" />
         </LinearLayout>
+
     </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
