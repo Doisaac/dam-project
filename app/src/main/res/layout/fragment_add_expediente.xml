@@ -36,149 +36,318 @@
                 android:gravity="center"
                 android:layout_marginBottom="20dp"/>
 
-            <!-- Nombre -->
-            <EditText
-                android:id="@+id/editTextNombre"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Nombre"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- Apellido -->
-            <EditText
-                android:id="@+id/editTextApellido"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Apellido"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- Fecha nacimiento -->
-            <EditText
-                android:id="@+id/editTextFechaNacimiento"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Fecha de nacimiento"
-                android:focusable="false"
-                android:clickable="true"
-                android:inputType="none"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- Género -->
-            <TextView
+            <!-- Card 1: Nombre, Apellido, Fecha de nacimiento, genero -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Género"
-                android:textStyle="bold"
-                android:textColor="@color/azul_oscuro"
-                android:layout_marginBottom="4dp" />
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/celesteclaro"
+                android:layout_marginBottom="16dp">
 
-            <RadioGroup
-                android:id="@+id/radioGroupGenero"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <RadioButton
-                    android:id="@+id/radioMasculino"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Masculino"
-                    android:textColor="@color/gris_texto"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <RadioButton
-                    android:id="@+id/radioFemenino"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Femenino"
-                    android:textColor="@color/gris_texto"/>
-            </RadioGroup>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Datos personales"
+                        android:textColor="@color/azul_oscuro"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="10dp"/>
 
-            <!-- Teléfono -->
-            <EditText
-                android:id="@+id/editTextTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Teléfono"
-                android:inputType="phone"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_marginBottom="10dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Correo -->
-            <EditText
-                android:id="@+id/editTextCorreo"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Correo electrónico"
-                android:inputType="textEmailAddress"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Apellido"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_marginBottom="10dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextApellido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Dirección -->
-            <EditText
-                android:id="@+id/editTextDireccion"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Dirección"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Fecha de nacimiento"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_marginBottom="12dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextFechaNacimiento"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Observaciones -->
-            <EditText
-                android:id="@+id/editTextObservaciones"
-                android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:hint="Observaciones"
-                android:backgroundTint="@color/azul_claro"
-                android:textColor="@color/gris_texto"
-                android:padding="12dp"
-                android:gravity="top"
-                android:minLines="3"
-                android:layout_marginBottom="16dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Género"
+                        android:textColor="@color/azul_oscuro"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
 
-            <!-- Condiciones médicas-->
-            <TextView
+                    <RadioGroup
+                        android:id="@+id/radioGroupGenero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/radioMasculino"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Masculino"
+                            android:textColor="@color/azul_oscuro"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/radioFemenino"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Femenino"
+                            android:textColor="@color/azul_oscuro"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 2: Teléfono, Correo -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Condiciones médicas:"
-                android:textStyle="bold"
-                android:textColor="@color/azul_oscuro"
-                android:layout_marginBottom="8dp"/>
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/celesteclaro"
+                android:layout_marginBottom="16dp">
 
-            <CheckBox android:id="@+id/checkboxDiabetes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Diabetes"/>
-            <CheckBox android:id="@+id/checkboxAnemia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Anemia"/>
-            <CheckBox android:id="@+id/checkboxGastritis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gastritis"/>
-            <CheckBox android:id="@+id/checkboxHTA" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hipertensión (HTA)"/>
-            <CheckBox android:id="@+id/checkboxHemorragias" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hemorragias"/>
-            <CheckBox android:id="@+id/checkboxAsma" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Asma"/>
-            <CheckBox android:id="@+id/checkboxCardiacos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trastornos cardiacos"/>
-            <CheckBox android:id="@+id/checkboxConvulsiones" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Convulsiones"/>
-            <CheckBox android:id="@+id/checkboxTiroides" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tiroides"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contacto"
+                        android:textColor="@color/azul_oscuro"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Teléfono"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_marginBottom="10dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextTelefono"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Correo electrónico"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextCorreo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 3: Dirección y Observaciones -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/celesteclaro"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Otros datos"
+                        android:textColor="@color/azul_oscuro"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Dirección"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_marginBottom="10dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextDireccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Observaciones"
+                        app:boxStrokeColor="@color/azul_claro"
+                        app:boxBackgroundColor="@color/white"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextObservaciones"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:minLines="3"
+                            android:textColor="@color/azul_oscuro"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 4: Género y Condiciones médicas -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/celesteclaro"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Condiciones médicas"
+                        android:textColor="@color/azul_oscuro"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxDiabetes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diabetes"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxAnemia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Anemia"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxGastritis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gastritis"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxHTA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hipertensión (HTA)"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxHemorragias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hemorragias"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxAsma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Asma"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxCardiacos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trastornos cardiacos"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxConvulsiones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Convulsiones"
+                        android:textColor="@color/gris_texto"/>
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkboxTiroides"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiroides"
+                        android:textColor="@color/gris_texto"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- Botón Guardar -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGuardarExpediente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Guardar expediente"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/verde_menta"
-                android:layout_marginTop="24dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="32dp"/>
         </LinearLayout>
     </ScrollView>
