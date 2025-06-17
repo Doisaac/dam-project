@@ -36,24 +36,9 @@ public class AddExpedienteFragment extends Fragment {
     // Recibe un ID de expediente
     private int expedienteId = -1;
 
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public AddExpedienteFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_addExpediente.
-     */
-    // TODO: Rename and change types and number of parameters
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +59,7 @@ public class AddExpedienteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Si se esta editando
         if (expedienteId != -1) {
             AppDatabase db = AppDatabase.getInstance(requireContext());
             Expediente expediente = db.expedienteDao().getById(expedienteId);
@@ -105,6 +91,9 @@ public class AddExpedienteFragment extends Fragment {
                 ((CheckBox) view.findViewById(R.id.checkboxConvulsiones)).setChecked(expediente.convulsiones);
                 ((CheckBox) view.findViewById(R.id.checkboxTiroides)).setChecked(expediente.tiroides);
             }
+
+            Button btnGuardar = view.findViewById(R.id.btnGuardarExpediente);
+            btnGuardar.setText("Editar Expediente");
         }
 
         // Calendario
@@ -113,9 +102,9 @@ public class AddExpedienteFragment extends Fragment {
         editTextFecha.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
 
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int anio = calendar.get(Calendar.YEAR);
+            int mes = calendar.get(Calendar.MONTH);
+            int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     requireContext(),
@@ -125,7 +114,7 @@ public class AddExpedienteFragment extends Fragment {
                                 String.format("%02d", selectedDay);
                         editTextFecha.setText(fecha);
                     },
-                    year, month, day
+                    anio, mes, dia
             );
 
             datePickerDialog.show();
@@ -135,7 +124,6 @@ public class AddExpedienteFragment extends Fragment {
         Button btnGuardar = view.findViewById(R.id.btnGuardarExpediente);
         btnGuardar.setOnClickListener(v -> {
             // Obtener referencias
-            // Obligatirios
             EditText editTextNombre = view.findViewById(R.id.editTextNombre);
             EditText editTextApellido = view.findViewById(R.id.editTextApellido);
             EditText editTextFechaNacimiento = view.findViewById(R.id.editTextFechaNacimiento);
@@ -171,6 +159,7 @@ public class AddExpedienteFragment extends Fragment {
 
             // genero
             RadioButton radioMasculino = view.findViewById(R.id.radioMasculino);
+            // Por defecto, si no se selecciona es femenino
             String genero = radioMasculino.isChecked() ? "Masculino" : "Femenino";
 
             // Fecha de creacion se crea automaticamente
