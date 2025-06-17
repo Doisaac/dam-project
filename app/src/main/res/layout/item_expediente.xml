@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="@color/celeste_suave">
+        android:background="@color/celesteclaro">
 
         <!-- Información del expediente -->
         <LinearLayout
@@ -44,7 +44,7 @@
                 android:fontFamily="sans-serif" />
         </LinearLayout>
 
-        <!-- Botones de acción -->
+        <!-- Botones -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,8 +58,8 @@
                 android:layout_marginEnd="8dp"
                 android:text="Editar"
                 android:textAllCaps="false"
-                android:textColor="@color/azul_oscuro"
-                android:backgroundTint="@color/celesteclaro"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/azul_oscuro"
                 app:cornerRadius="16dp"
                 android:fontFamily="sans-serif-medium" />
 
@@ -69,8 +69,8 @@
                 android:layout_height="wrap_content"
                 android:text="Borrar"
                 android:textAllCaps="false"
-                android:textColor="@color/snackbar_fondo"
-                android:backgroundTint="@color/celesteclaro"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/rojo"
                 app:cornerRadius="16dp"
                 android:fontFamily="sans-serif-medium" />
         </LinearLayout>
