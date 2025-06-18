@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Clínica Dental - Modo Oscuro -->
+    <color name="black">#FFFFFF</color>
+    <color name="white">#000000</color>
+
+    <color name="azul_oscuro">#1B2A34</color>
+    <color name="verde_menta">#20B2AA</color>
+    <color name="azul_claro">#88C0D0</color>
+    <color name="celeste_suave">#121212</color>
+    <color name="gris_texto">#CCCCCC</color>
+    <color name="grisoscuro">#EEEEEE</color>
+    <color name="celesteclaro">#1F1F1F</color>
+    <color name="blue">#2196F3</color>
+    <color name="grey">#BBBBBB</color>
+    <color name="rojo">#FF6B6B</color>
+
+    <!-- Snackbar -->
+    <color name="snackbar_fondo">#D32F2F</color>
+</resources>

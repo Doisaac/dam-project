@@ -1,16 +1,19 @@
 package com.hadoga.dam_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Switch;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,6 +34,28 @@ public class HomeActivity extends AppCompatActivity {
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // MODO OSCURO
+        /// Leer el estado actual del modo oscuro
+        SharedPreferences themePrefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean isDarkMode = themePrefs.getBoolean("dark_mode", false);
+
+        // Referencia al Switch
+        Switch switchDarkMode = binding.appBarHome.switchDarkMode;
+        switchDarkMode.setChecked(isDarkMode);
+
+        // Escuchar cambios del Switch
+        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = themePrefs.edit();
+            editor.putBoolean("dark_mode", isChecked);
+            editor.apply();
+
+            AppCompatDelegate.setDefaultNightMode(
+                    isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+            );
+
+            recreate();
+        });
 
         setSupportActionBar(binding.appBarHome.toolbar);
         binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {

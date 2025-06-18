@@ -18,6 +18,16 @@
             android:background="@color/azul_oscuro"
             app:popupTheme="@style/Theme.Damproject.PopupOverlay" />
 
+        <!-- Switch Modo Oscuro  -->
+        <Switch
+            android:id="@+id/switch_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modo oscuro"
+            android:textColor="@color/black"
+            android:layout_gravity="end"
+            android:layout_margin="16dp" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_home" />
