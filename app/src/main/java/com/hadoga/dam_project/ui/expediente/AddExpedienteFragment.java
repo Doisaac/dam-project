@@ -70,6 +70,17 @@ public class AddExpedienteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Restaurar imagen si estaba seleccionada
+        if (savedInstanceState != null) {
+            String imagenUriGuardada = savedInstanceState.getString("imagen_uri");
+            if (imagenUriGuardada != null) {
+                selectedImageUri = Uri.parse(imagenUriGuardada);
+                ImageView imageExpediente = view.findViewById(R.id.imageExpediente);
+                imageExpediente.setImageURI(selectedImageUri);
+            }
+        }
+
+
         // Si se esta editando
         if (expedienteId != -1) {
             AppDatabase db = AppDatabase.getInstance(requireContext());
@@ -271,6 +282,15 @@ public class AddExpedienteFragment extends Fragment {
         });
 
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (selectedImageUri != null) {
+            outState.putString("imagen_uri", selectedImageUri.toString());
+        }
+    }
+
 
     private Uri copiarImagenALocal(Uri uriOriginal) {
         try {
