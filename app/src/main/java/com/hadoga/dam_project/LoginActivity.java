@@ -1,12 +1,14 @@
 package com.hadoga.dam_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -40,6 +42,21 @@ public class LoginActivity extends AppCompatActivity {
         btnIngresar = findViewById(R.id.btn_ingresar);
         btnSalir = findViewById(R.id.btn_salir);
 
+        // Leer datos del login de SharedPreferences
+        CheckBox checkBoxRecordar = findViewById(R.id.checkbox_recordar);
+
+        SharedPreferences prefs = getSharedPreferences("user_login_data", MODE_PRIVATE);
+        String emailGuardado = prefs.getString("email", "");
+        String passwordGuardado = prefs.getString("password", "");
+        boolean recordar = prefs.getBoolean("recordar", false);
+
+        // Si el usuario eligió recordar, rellenar campos
+        if (recordar) {
+            editTextEmail.setText(emailGuardado);
+            editTextPassword.setText(passwordGuardado);
+            checkBoxRecordar.setChecked(true);
+        }
+
         // Inicializar base de datos
         db = AppDatabase.getInstance(this);
         btnIngresar.setOnClickListener(v -> {
@@ -59,6 +76,18 @@ public class LoginActivity extends AppCompatActivity {
             User user = db.userDao().login(email, password);
             if (user != null) {
                 Toast.makeText(this, "¡Bienvenido " + user.username + "!", Toast.LENGTH_LONG).show();
+
+                // Guardar los datos de login en SharedPreferences
+                SharedPreferences.Editor editor = getSharedPreferences("user_login_data", MODE_PRIVATE).edit();
+
+                if (checkBoxRecordar.isChecked()) {
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.putBoolean("recordar", true);
+                } else {
+                    editor.clear();
+                }
+                editor.apply();
 
                 // Redirigir a HomeActivity (Navigation Drawer)
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -111,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.menuitem_salir) {
-            finish(); // Cierra la app o actividad actual
+            finish();
             return true;
         }
 
