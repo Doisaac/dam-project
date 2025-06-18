@@ -9,6 +9,9 @@ public class Expediente {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
+    @ColumnInfo(name = "foto_uri")
+    public String fotoUri;
+
     public String nombre;
     public String apellido;
 

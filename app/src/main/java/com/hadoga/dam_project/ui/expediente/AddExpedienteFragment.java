@@ -1,20 +1,27 @@
 package com.hadoga.dam_project.ui.expediente;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -22,19 +29,23 @@ import com.hadoga.dam_project.R;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Expediente;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddExpedienteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddExpedienteFragment extends Fragment {
     // Recibe un ID de expediente
     private int expedienteId = -1;
+
+    // Imagen
+    private Uri selectedImageUri = null;
+    private ActivityResultLauncher<Intent> imagePickerLauncher;
+
 
     public AddExpedienteFragment() {
         // Required empty public constructor
@@ -94,7 +105,47 @@ public class AddExpedienteFragment extends Fragment {
 
             Button btnGuardar = view.findViewById(R.id.btnGuardarExpediente);
             btnGuardar.setText("Editar Expediente");
+
+            // Carga la imagen
+            if (expediente.fotoUri != null && !expediente.fotoUri.isEmpty()) {
+                selectedImageUri = Uri.parse(expediente.fotoUri);
+                File imagenFile = new File(selectedImageUri.getPath());
+                if (imagenFile.exists()) {
+                    ImageView imageExpediente = view.findViewById(R.id.imageExpediente);
+                    imageExpediente.setImageURI(selectedImageUri);
+                } else {
+                    Log.e("Imagen", "La imagen guardada ya no existe.");
+                }
+            }
+
         }
+
+        //  Imagen de expediente
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        Uri uriSeleccionada = result.getData().getData();
+                        Uri uriCopiada = copiarImagenALocal(uriSeleccionada);
+
+                        if (uriCopiada != null) {
+                            selectedImageUri = uriCopiada;
+                            ImageView imageExpediente = requireView().findViewById(R.id.imageExpediente);
+                            imageExpediente.setImageURI(selectedImageUri);
+                        } else {
+                            Toast.makeText(requireContext(), "Error al copiar imagen", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+
+        Button btnSeleccionarFoto = view.findViewById(R.id.btnSeleccionarFoto);
+
+        btnSeleccionarFoto.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            imagePickerLauncher.launch(intent);
+        });
 
         // Calendario
         EditText editTextFecha = view.findViewById(R.id.editTextFechaNacimiento);
@@ -197,6 +248,10 @@ public class AddExpedienteFragment extends Fragment {
             expediente.convulsiones = convulsiones;
             expediente.tiroides = tiroides;
 
+            if (selectedImageUri != null) {
+                expediente.fotoUri = selectedImageUri.toString();
+            }
+
             // Guardar en base de datos
             AppDatabase db = AppDatabase.getInstance(requireContext());
 
@@ -215,5 +270,29 @@ public class AddExpedienteFragment extends Fragment {
             navController.popBackStack();
         });
 
+    }
+
+    private Uri copiarImagenALocal(Uri uriOriginal) {
+        try {
+            InputStream inputStream = requireContext().getContentResolver().openInputStream(uriOriginal);
+            if (inputStream == null) return null;
+
+            File imagenFile = new File(requireContext().getFilesDir(), "expediente_" + System.currentTimeMillis() + ".jpg");
+            OutputStream outputStream = new FileOutputStream(imagenFile);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            inputStream.close();
+            outputStream.close();
+
+            return Uri.fromFile(imagenFile);
+        } catch (Exception e) {
+            Log.e("Imagen", "Error copiando imagen: " + e.getMessage());
+            return null;
+        }
     }
 }

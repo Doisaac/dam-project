@@ -36,6 +36,36 @@
                 android:gravity="center"
                 android:layout_marginBottom="20dp"/>
 
+            <!-- Card 0: Foto del paciente -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/celesteclaro"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageExpediente"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_placeholder" />
+
+                    <Button
+                        android:id="@+id/btnSeleccionarFoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seleccionar Foto" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Card 1: Nombre, Apellido, Fecha de nacimiento, genero -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
