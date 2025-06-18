@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,11 +59,19 @@ public class CitaAdapter extends RecyclerView.Adapter<CitaAdapter.ViewHolder> {
         });
 
         holder.btnEliminar.setOnClickListener(v -> {
-            AppDatabase db = AppDatabase.getInstance(activity);
-            db.citaDao().delete(cita);
-            lista.remove(position);
-            notifyItemRemoved(position);
-            Toast.makeText(activity, "Cita eliminada", Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(activity, R.style.alertDialogPersonalizado)
+                    .setTitle("Confirmar eliminación de cita")
+                    .setMessage("¿Estás seguro que deseas eliminar esta cita?")
+                    .setPositiveButton("Eliminar", (dialog, which) -> {
+                        AppDatabase db = AppDatabase.getInstance(activity);
+                        db.citaDao().delete(cita);
+                        lista.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, lista.size());
+                        Toast.makeText(activity, "Cita eliminada", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         });
     }
 
