@@ -1,14 +1,13 @@
 package com.hadoga.dam_project.ui.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.hadoga.dam_project.R;
-import com.hadoga.dam_project.ui.expediente.AddExpedienteFragment;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Expediente;
 
@@ -59,12 +57,19 @@ public class ExpedienteAdapter extends RecyclerView.Adapter<ExpedienteAdapter.Vi
 
         // Botón eliminar
         holder.btnEliminar.setOnClickListener(v -> {
-            AppDatabase db = AppDatabase.getInstance(activity);
-            db.expedienteDao().delete(expediente);
+            new AlertDialog.Builder(activity)
+                    .setTitle("Confirmar eliminación de expediente")
+                    .setMessage("¿Estás seguro que deseas eliminar este expediente?")
+                    .setPositiveButton("Eliminar", (dialog, which) -> {
+                        AppDatabase db = AppDatabase.getInstance(activity);
+                        db.expedienteDao().delete(expediente);
 
-            lista.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, lista.size());
+                        lista.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, lista.size());
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         });
     }
 
