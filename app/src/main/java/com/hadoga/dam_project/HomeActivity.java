@@ -1,12 +1,16 @@
 package com.hadoga.dam_project;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -63,4 +67,36 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_cerrar_sesion) {
+            // Eliminar datos de sesión guardados
+            getSharedPreferences("user_login_data", MODE_PRIVATE)
+                    .edit()
+                    .clear()
+                    .apply();
+
+            // Volver al LoginActivity
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_salir) {
+            // Salir de la aplicación (continua guardando los datos de login en sharedPreferences)
+            new AlertDialog.Builder(this)
+                    .setTitle("Salir de la aplicación")
+                    .setMessage("¿Estás seguro que deseas salir?")
+                    .setPositiveButton("Salir", (dialog, which) -> {
+                        finishAffinity();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
