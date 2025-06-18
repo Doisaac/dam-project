@@ -17,6 +17,14 @@
         android:gravity="center_vertical"
         android:background="@color/celesteclaro">
 
+        <ImageView
+            android:id="@+id/imageExpediente"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person_placeholder" />
+
         <!-- Información del expediente -->
         <LinearLayout
             android:layout_width="0dp"
