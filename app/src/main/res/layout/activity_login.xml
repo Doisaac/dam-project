@@ -53,31 +53,40 @@
             android:padding="24dp">
 
             <!-- Email -->
-            <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese su correo"
+            app:boxStrokeColor="@color/azul_claro"
+            app:boxBackgroundColor="@color/white"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textview_usuario"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:hint="Ingrese su correo"
                 android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <!-- Password -->
-            <EditText
-                android:id="@+id/edittext_password"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:hint="Ingrese su contraseña"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/azul_oscuro"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Recordarme -->
+        <!-- Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese su contraseña"
+            app:boxStrokeColor="@color/azul_claro"
+            app:boxBackgroundColor="@color/white"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/azul_oscuro"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Recordarme -->
             <CheckBox
                 android:id="@+id/checkbox_recordar"
                 android:layout_width="wrap_content"
