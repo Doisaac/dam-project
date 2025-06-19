@@ -1,6 +1,7 @@
 package com.hadoga.dam_project.ui.ctias;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hadoga.dam_project.R;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Cita;
@@ -68,7 +71,17 @@ public class CitaAdapter extends RecyclerView.Adapter<CitaAdapter.ViewHolder> {
                         lista.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, lista.size());
-                        Toast.makeText(activity, "Cita eliminada", Toast.LENGTH_SHORT).show();
+
+                        // Snackbar
+                        Snackbar snackbar = Snackbar.make(activity.findViewById(android.R.id.content), "¡Cita eliminada correctamente!", Snackbar.LENGTH_LONG);
+
+                        View snackbarView = snackbar.getView();
+                        TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                        snackbar.show();
                     })
                     .setNegativeButton("Cancelar", null)
                     .show();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -203,10 +204,32 @@ public class AddCitaFragment extends Fragment {
 
             if (citaId != -1) {
                 db.citaDao().update(citaEditando);
-                Toast.makeText(requireContext(), "Cita actualizada correctamente", Toast.LENGTH_SHORT).show();
+                // Snackbar
+                Snackbar snackbar = Snackbar.make(view, "¡Cita actualizada correctamente!", Snackbar.LENGTH_LONG);
+
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundTintList(null);
+                snackbarView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.verde_menta));
+                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                snackbar.show();
             } else {
                 db.citaDao().insert(citaEditando);
-                Toast.makeText(requireContext(), "Cita guardada correctamente", Toast.LENGTH_SHORT).show();
+                // Snackbar
+                Snackbar snackbar = Snackbar.make(view, "¡Cita guardada correctamente!", Snackbar.LENGTH_LONG);
+
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundTintList(null);
+                snackbarView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.verde_menta));
+                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                snackbar.show();
             }
 
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_home);

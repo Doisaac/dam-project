@@ -91,8 +91,6 @@ public class ExpedienteAdapter extends RecyclerView.Adapter<ExpedienteAdapter.Vi
                         Snackbar snackbar = Snackbar.make(activity.findViewById(android.R.id.content), "¡Expediente eliminado correctamente!", Snackbar.LENGTH_LONG);
 
                         View snackbarView = snackbar.getView();
-                        snackbarView.setBackgroundTintList(null);
-                        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.verde_menta));
                         TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
 
                         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
