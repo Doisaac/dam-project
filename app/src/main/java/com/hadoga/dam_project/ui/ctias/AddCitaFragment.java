@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.hadoga.dam_project.R;
@@ -169,6 +172,34 @@ public class AddCitaFragment extends Fragment {
             citaEditando.motivo = motivo;
             citaEditando.notas = notas;
             citaEditando.estado = estadoSeleccionado;
+
+            // Validar si no hay cita en ese rango
+            List<Cita> citasConflicto = db.citaDao().getCitasEnRango(fechaHora);
+            if (citaId == -1 && !citasConflicto.isEmpty()) {
+                // Snackbar
+                Snackbar snackbar = Snackbar.make(view, "Ya existe una cita en ese rango de tiempo", Snackbar.LENGTH_LONG);
+
+                View snackbarView = snackbar.getView();
+                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                snackbar.show();
+                return;
+            } else if (citaId != -1 && citasConflicto.stream().anyMatch(c -> c.id != citaId)) {
+                // Snackbar
+                Snackbar snackbar = Snackbar.make(view, "Conflicto con otra cita en ese horario.", Snackbar.LENGTH_LONG);
+
+                View snackbarView = snackbar.getView();
+                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                snackbar.show();
+                return;
+            }
 
             if (citaId != -1) {
                 db.citaDao().update(citaEditando);

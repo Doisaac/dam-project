@@ -27,6 +27,9 @@ public interface CitaDao {
     @Delete
     void delete(Cita cita);
 
+    @Query("SELECT * FROM citas WHERE datetime(fecha_hora) BETWEEN datetime(:fechaHora) AND datetime(:fechaHora, '+30 minutes')")
+    List<Cita> getCitasEnRango(String fechaHora);
+
     // Posible implementación
     @Query("SELECT * FROM citas WHERE paciente_id = :expedienteId")
     List<Cita> getCitasByExpedienteId(int expedienteId);
