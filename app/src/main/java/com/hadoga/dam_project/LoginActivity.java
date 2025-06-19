@@ -87,6 +87,12 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 Toast.makeText(this, "¡Bienvenido " + user.username + "!", Toast.LENGTH_LONG).show();
 
+                // Guarda el email para personalizar nav_header
+                getSharedPreferences("nav_header", MODE_PRIVATE)
+                        .edit()
+                        .putString("email", user.email)
+                        .apply();
+
                 // Guardar los datos de login en SharedPreferences
                 SharedPreferences.Editor editor = getSharedPreferences("user_login_data", MODE_PRIVATE).edit();
 

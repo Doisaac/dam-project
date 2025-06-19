@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -22,6 +23,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hadoga.dam_project.databinding.ActivityHomeBinding;
+import com.hadoga.data.AppDatabase;
+import com.hadoga.data.model.User;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -77,6 +80,21 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // Accede a los TextViews del header
+        View headerView = navigationView.getHeaderView(0);
+        TextView textUsername = headerView.findViewById(R.id.text_username);
+        TextView textEmail = headerView.findViewById(R.id.text_email);
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        SharedPreferences prefs = getSharedPreferences("nav_header", MODE_PRIVATE);
+        String email_nav = prefs.getString("email", null);
+        User user = db.userDao().getUserByEmail(email_nav);
+
+        if (user != null) {
+            textUsername.setText(user.username);
+            textEmail.setText(user.email);
+        }
     }
 
     @Override
