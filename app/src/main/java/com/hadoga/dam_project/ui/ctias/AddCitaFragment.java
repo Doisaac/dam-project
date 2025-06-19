@@ -31,8 +31,11 @@ import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Cita;
 import com.hadoga.data.model.Expediente;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -175,30 +178,33 @@ public class AddCitaFragment extends Fragment {
             citaEditando.estado = estadoSeleccionado;
 
             // Validar si no hay cita en ese rango
-            List<Cita> citasConflicto = db.citaDao().getCitasEnRango(fechaHora);
-            if (citaId == -1 && !citasConflicto.isEmpty()) {
-                // Snackbar
-                Snackbar snackbar = Snackbar.make(view, "Ya existe una cita en ese rango de tiempo", Snackbar.LENGTH_LONG);
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                Date fechaSeleccionada = sdf.parse(fechaHora);
+                Calendar calInicio = Calendar.getInstance();
+                Calendar calFin = Calendar.getInstance();
 
-                View snackbarView = snackbar.getView();
-                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+                calInicio.setTime(fechaSeleccionada);
+                calInicio.add(Calendar.MINUTE, -30); // 30 minutos antes
 
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                calFin.setTime(fechaSeleccionada);
+                calFin.add(Calendar.MINUTE, 30); // 30 minutos después
 
-                snackbar.show();
-                return;
-            } else if (citaId != -1 && citasConflicto.stream().anyMatch(c -> c.id != citaId)) {
-                // Snackbar
-                Snackbar snackbar = Snackbar.make(view, "Conflicto con otra cita en ese horario.", Snackbar.LENGTH_LONG);
+                String inicio = sdf.format(calInicio.getTime());
+                String fin = sdf.format(calFin.getTime());
 
-                View snackbarView = snackbar.getView();
-                TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+                List<Cita> citasConflicto = db.citaDao().getCitasEnRango(inicio, fin);
 
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                textView.setGravity(Gravity.CENTER_HORIZONTAL);
-
-                snackbar.show();
+                if (citaId == -1 && !citasConflicto.isEmpty()) {
+                    mostrarSnackbar(view, "Ya existe una cita en ese rango de tiempo");
+                    return;
+                } else if (citaId != -1 && citasConflicto.stream().anyMatch(c -> c.id != citaId)) {
+                    mostrarSnackbar(view, "Conflicto con otra cita en ese horario.");
+                    return;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                mostrarSnackbar(view, "Error en el formato de fecha");
                 return;
             }
 
@@ -276,5 +282,14 @@ public class AddCitaFragment extends Fragment {
                 editTextFechaHora.setText(fechaHora);
             });
         });
+    }
+
+    private void mostrarSnackbar(View view, String mensaje) {
+        Snackbar snackbar = Snackbar.make(view, mensaje, Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        snackbar.show();
     }
 }
