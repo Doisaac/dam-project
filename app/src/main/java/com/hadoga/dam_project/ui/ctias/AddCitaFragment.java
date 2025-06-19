@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.hadoga.dam_project.R;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Cita;
@@ -68,9 +71,9 @@ public class AddCitaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_cita, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -105,16 +108,7 @@ public class AddCitaFragment extends Fragment {
         spinnerEstado.setAdapter(estadoAdapter);
 
         // Fecha y hora con pickers
-        editTextFechaHora.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            new DatePickerDialog(requireContext(), (view1, year, month, day) -> {
-                new TimePickerDialog(requireContext(), (view2, hour, minute) -> {
-                    String fechaHora = String.format(Locale.getDefault(),
-                            "%04d-%02d-%02d %02d:%02d", year, month + 1, day, hour, minute);
-                    editTextFechaHora.setText(fechaHora);
-                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
-        });
+        editTextFechaHora.setOnClickListener(v -> mostrarDateTimePicker(editTextFechaHora));
 
         // Si es edición, precargar los datos
         if (citaId != -1) {
@@ -186,6 +180,47 @@ public class AddCitaFragment extends Fragment {
 
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_home);
             navController.popBackStack();
+        });
+    }
+
+    // Método selector de fecha y hora
+    private void mostrarDateTimePicker(EditText editTextFechaHora) {
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Seleccionar fecha")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
+
+        datePicker.show(getParentFragmentManager(), "DATE_PICKER");
+
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(selection);
+
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                    .setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+                    .setMinute(Calendar.getInstance().get(Calendar.MINUTE))
+                    .setTitleText("Seleccionar hora")
+                    .build();
+
+            timePicker.show(getParentFragmentManager(), "TIME_PICKER");
+
+            timePicker.addOnPositiveButtonClickListener(v -> {
+                int hour = timePicker.getHour();
+                int minute = timePicker.getMinute();
+
+                Calendar finalCalendar = Calendar.getInstance();
+                finalCalendar.set(year, month, day, hour, minute);
+
+                String fechaHora = String.format(Locale.getDefault(), "%04d-%02d-%02d %02d:%02d",
+                        year, month + 1, day, hour, minute);
+
+                editTextFechaHora.setText(fechaHora);
+            });
         });
     }
 }

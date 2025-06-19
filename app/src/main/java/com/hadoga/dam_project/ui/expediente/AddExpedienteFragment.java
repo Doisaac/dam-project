@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.hadoga.dam_project.R;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Expediente;
@@ -162,25 +163,26 @@ public class AddExpedienteFragment extends Fragment {
         EditText editTextFecha = view.findViewById(R.id.editTextFechaNacimiento);
 
         editTextFecha.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Seleccionar fecha de nacimiento")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build();
 
-            int anio = calendar.get(Calendar.YEAR);
-            int mes = calendar.get(Calendar.MONTH);
-            int dia = calendar.get(Calendar.DAY_OF_MONTH);
+            datePicker.show(getParentFragmentManager(), "DATE_PICKER");
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    requireContext(),
-                    (view1, selectedYear, selectedMonth, selectedDay) -> {
-                        String fecha = selectedYear + "-" +
-                                String.format("%02d", selectedMonth + 1) + "-" +
-                                String.format("%02d", selectedDay);
-                        editTextFecha.setText(fecha);
-                    },
-                    anio, mes, dia
-            );
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(selection);
 
-            datePickerDialog.show();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                String fecha = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, day);
+                editTextFecha.setText(fecha);
+            });
         });
+
 
         // Agregar expediente
         Button btnGuardar = view.findViewById(R.id.btnGuardarExpediente);
