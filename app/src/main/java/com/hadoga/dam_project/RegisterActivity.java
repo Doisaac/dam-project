@@ -83,6 +83,11 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
+            if (password.length() <= 4) {
+                editTextPassword.setError("La contraseña debe ser mayor a 4 caracteres");
+                return;
+            }
+
             if (confirmarPassword.isEmpty()) {
                 editTextConfirmar.setError("Campo obligatorio");
                 return;
