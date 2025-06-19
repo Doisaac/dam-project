@@ -3,7 +3,7 @@
     <!-- Tema base nocturno -->
     <style name="Base.Theme.Damproject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Colores personalizados modo oscuro -->
-        <item name="colorPrimary">@color/azul_claro</item>
+        <item name="colorPrimary">@color/toolbar</item>
         <item name="android:textColorPrimary">@color/white</item>
 
         <!-- Aplicar tus estilos personalizados -->

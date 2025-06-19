@@ -14,6 +14,8 @@
     <color name="blue">#2196F3</color>
     <color name="grey">#BBBBBB</color>
     <color name="rojo">#FF6B6B</color>
+    <color name="toolbar">#264653</color>
+
 
     <!-- Snackbar -->
     <color name="snackbar_fondo">#D32F2F</color>
