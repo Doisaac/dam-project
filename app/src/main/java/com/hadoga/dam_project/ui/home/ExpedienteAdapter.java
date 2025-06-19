@@ -3,6 +3,7 @@ package com.hadoga.dam_project.ui.home;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hadoga.dam_project.R;
 import com.hadoga.data.AppDatabase;
 import com.hadoga.data.model.Expediente;
@@ -83,6 +86,19 @@ public class ExpedienteAdapter extends RecyclerView.Adapter<ExpedienteAdapter.Vi
                         lista.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, lista.size());
+
+                        // Snackbar
+                        Snackbar snackbar = Snackbar.make(activity.findViewById(android.R.id.content), "¡Expediente eliminado correctamente!", Snackbar.LENGTH_LONG);
+
+                        View snackbarView = snackbar.getView();
+                        snackbarView.setBackgroundTintList(null);
+                        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.verde_menta));
+                        TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                        snackbar.show();
                     })
                     .setNegativeButton("Cancelar", null)
                     .show();
