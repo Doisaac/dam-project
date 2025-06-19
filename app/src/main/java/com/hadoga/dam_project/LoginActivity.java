@@ -116,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Dent Hadoga");
 
         // Cambiar color del ícono de overflow, tema y los tres puntos
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
