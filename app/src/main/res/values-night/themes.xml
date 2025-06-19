@@ -5,11 +5,10 @@
         <!-- Colores personalizados modo oscuro -->
         <item name="colorPrimary">@color/azul_claro</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:background">@color/celeste_suave</item>
 
         <!-- Aplicar tus estilos personalizados -->
         <item name="android:textViewStyle">@style/textviewPersonalizado</item>
-        <item name="editTextStyle">@style/edittextPersonalizado</item>
+\        <item name="editTextStyle">@style/edittextPersonalizado</item>
         <item name="materialButtonStyle">@style/buttonPersonalizado</item>
         <item name="snackbarStyle">@style/snackbarPersonalizado</item>
         <item name="alertDialogTheme">@style/alertDialogPersonalizado</item>
