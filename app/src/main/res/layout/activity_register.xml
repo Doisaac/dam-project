@@ -56,55 +56,73 @@
             android:padding="24dp">
 
             <!-- Usuario -->
-            <EditText
-                android:id="@+id/edittext_usuario"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:hint="Usuario"
-                android:inputType="text"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:background="@drawable/bg_edittext_rounded" />
+                app:boxStrokeColor="@color/azul_claro"
+                app:boxBackgroundColor="@color/white"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_usuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/azul_oscuro"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <!-- Email -->
-            <EditText
-                android:id="@+id/edittext_email"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
                 android:hint="Correo electrónico"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:background="@drawable/bg_edittext_rounded" />
+                app:boxStrokeColor="@color/azul_claro"
+                app:boxBackgroundColor="@color/white"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/azul_oscuro"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Contraseña -->
-            <EditText
-                android:id="@+id/edittext_password"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
                 android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:background="@drawable/bg_edittext_rounded" />
+                app:boxStrokeColor="@color/azul_claro"
+                app:boxBackgroundColor="@color/white"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/azul_oscuro"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Confirmar contraseña -->
-            <EditText
-                android:id="@+id/edittext_confirmar"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:hint="Confirmar contraseña"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:background="@drawable/bg_edittext_rounded" />
+                android:layout_height="wrap_content"
+                android:hint="Confirmar Contraseña"
+                app:boxStrokeColor="@color/azul_claro"
+                app:boxBackgroundColor="@color/white"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_confirmar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/azul_oscuro"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
