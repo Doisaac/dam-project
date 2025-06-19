@@ -185,21 +185,28 @@ public class AddCitaFragment extends Fragment {
                 Calendar calFin = Calendar.getInstance();
 
                 calInicio.setTime(fechaSeleccionada);
-                calInicio.add(Calendar.MINUTE, -30); // 30 minutos antes
+                // 30 minutos antes
+                calInicio.add(Calendar.MINUTE, -30);
 
                 calFin.setTime(fechaSeleccionada);
-                calFin.add(Calendar.MINUTE, 30); // 30 minutos después
+                // 30 minutos después
+                calFin.add(Calendar.MINUTE, 30);
 
                 String inicio = sdf.format(calInicio.getTime());
                 String fin = sdf.format(calFin.getTime());
 
                 List<Cita> citasConflicto = db.citaDao().getCitasEnRango(inicio, fin);
 
-                if (citaId == -1 && !citasConflicto.isEmpty()) {
-                    mostrarSnackbar(view, "Ya existe una cita en ese rango de tiempo");
+                // Filtrar solo las que no están canceladas
+                List<Cita> citasNoCanceladas = citasConflicto.stream()
+                        .filter(c -> !c.estado.equalsIgnoreCase("cancelada"))
+                        .collect(Collectors.toList());
+
+                if (citaId == -1 && !citasNoCanceladas.isEmpty()) {
+                    mostrarSnackbar(view, "Ya existe una cita activa en ese rango de tiempo");
                     return;
-                } else if (citaId != -1 && citasConflicto.stream().anyMatch(c -> c.id != citaId)) {
-                    mostrarSnackbar(view, "Conflicto con otra cita en ese horario.");
+                } else if (citaId != -1 && citasNoCanceladas.stream().anyMatch(c -> c.id != citaId)) {
+                    mostrarSnackbar(view, "Conflicto con otra cita activa en ese horario.");
                     return;
                 }
             } catch (ParseException e) {
