@@ -58,11 +58,18 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_person_placeholder" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSeleccionarFoto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Seleccionar Foto" />
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/azul_oscuro"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Seleccionar Foto"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        app:cornerRadius="16dp" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
