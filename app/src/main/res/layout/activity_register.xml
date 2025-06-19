@@ -17,7 +17,7 @@
         android:background="@color/azul_oscuro"
         android:minHeight="?attr/actionBarSize"
         app:title="Nuevo usuario"
-        app:titleTextColor="@android:color/white"
+        app:titleTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

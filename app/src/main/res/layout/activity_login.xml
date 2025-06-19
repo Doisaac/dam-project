@@ -15,6 +15,9 @@
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:background="@color/azul_oscuro"
+        android:minHeight="?attr/actionBarSize"
+        app:title="DAM-project"
+        app:titleTextColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
